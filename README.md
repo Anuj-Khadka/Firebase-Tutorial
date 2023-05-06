@@ -11,21 +11,21 @@ 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
 
 # Setup:
 
-`Step 1:`
+- `Step 1:`
 
 ```bash
 npm init -y
 npm i webpack webpack-cli
 ```
 
-`Step 2:` create _webpack.config.js_ file
-`Step 3:` add build key to the script in _package.json_ file
-`Step 4:` write _index.js_
-`Step 5:`
+- `Step 2:` create _webpack.config.js_ file
+- `Step 3:` add build key to the script in _package.json_ file
+- `Step 4:` write _index.js_
+- `Step 5:`
 
 ```bash
 npm run build
 ```
 
-`Step 6:` add _bunde.js_ to html file
-`Step 7:` run html page and see
+- `Step 6:` add _bunde.js_ to html file
+- `Step 7:` run html page and see
