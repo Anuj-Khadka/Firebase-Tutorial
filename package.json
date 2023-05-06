@@ -1,0 +1,25 @@
+{
+  "name": "firebase-tutorial",
+  "version": "1.0.0",
+  "description": "> A backend as a service like database, authentication, hosting, cloud etc. It handes a of the backend stuffs.",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Anuj-Khadka/Firebase-Tutorial.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Anuj-Khadka/Firebase-Tutorial/issues"
+  },
+  "homepage": "https://github.com/Anuj-Khadka/Firebase-Tutorial#readme",
+  "devDependencies": {
+    "webpack": "^5.82.0",
+    "webpack-cli": "^5.0.2"
+  }
+}
