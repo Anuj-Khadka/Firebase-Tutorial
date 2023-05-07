@@ -11,6 +11,7 @@ import {
   where,
   orderBy,
   serverTimestamp,
+  getDoc,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -34,7 +35,11 @@ const colRef = collection(db, "books");
 
 // firestore queries
 // const que = query(colRef, where("author", "==", "Robert Kiyosaki"), orderBy("title", "desc"));
-const que = query(colRef, where("author", "==", "Robert Kiyosaki"), orderBy("createdAt"));
+const que = query(
+  colRef,
+  where("author", "==", "Robert Kiyosaki"),
+  orderBy("createdAt")
+);
 
 // get collection data
 // getDocs(colRef)
@@ -66,7 +71,7 @@ addBookForm.addEventListener("submit", (e) => {
   addDoc(colRef, {
     title: addBookForm.title.value,
     author: addBookForm.author.value,
-    createdAt: serverTimestamp()
+    createdAt: serverTimestamp(),
   }).then(() => {
     addBookForm.reset();
   });
@@ -79,4 +84,14 @@ deleteBookForm.addEventListener("submit", (e) => {
   deleteDoc(docRef).then(() => {
     deleteBookForm.reset();
   });
+});
+
+// get a single document
+const singleDocRef = doc(db, "books", "hasm2ygi0uJ0eMe4BuPc");
+// getDoc(singleDocRef).then((doc) => {
+//   console.log("doc funct: ", doc.data(), doc.id);
+// });
+// real time handling
+onSnapshot(singleDocRef, (doc) => {
+  console.log("doc funct: ", doc.data(), doc.id);
 });
