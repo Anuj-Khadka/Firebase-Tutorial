@@ -2,11 +2,13 @@ import { initializeApp } from "firebase/app";
 import {
   getFirestore,
   collection,
-  getDocs,
+  // getDocs,
   addDoc,
   deleteDoc,
   doc,
   onSnapshot,
+  query,
+  where,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -28,6 +30,9 @@ const db = getFirestore();
 // collection ref
 const colRef = collection(db, "books");
 
+// firestore queries
+const que = query(colRef, where("author", "!=", "Ashneer Grover"));
+
 // get collection data
 // getDocs(colRef)
 //   .then((snapshot) => {
@@ -42,7 +47,8 @@ const colRef = collection(db, "books");
 //   });
 
 // real time collection data
-onSnapshot(colRef, (snapshot) => {
+// onSnapshot(colRef, (snapshot) => {
+onSnapshot(que, (snapshot) => {
   const books = [];
   snapshot.docs.forEach((doc) => {
     books.push({ ...doc.data(), id: doc.id });
