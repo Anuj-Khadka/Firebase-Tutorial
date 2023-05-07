@@ -1,13 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Firebase Tutorial</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Getting started with firebase</h1>
-</body>
-<script src="./bundle.js"></script>
+    <h2>Firebase Firestore</h2>
+    <form action="" class="add">
+      <label for="title">Title:</label>
+      <input type="text" name="title" id="title" required />
+      <label for="author">Author:</label>
+      <input type="text" name="author" id="author" required />
+      <button>Add New Book</button>
+    </form>
+    <form action="" class="delete">
+      <label for="id">Document id:</label>
+      <input type="text" name="id" required />
+      <button>Delete a Book</button>
+    </form>
+  </body>
+  <script src="./bundle.js"></script>
 </html>
