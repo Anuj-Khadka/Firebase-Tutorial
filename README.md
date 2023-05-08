@@ -10,5 +10,6 @@ Table of Content
   <li><a href="https://github.com/Anuj-Khadka/Firebase-Tutorial/tree/lesson-4">Lesson 4</a></li>
   <li><a href="https://github.com/Anuj-Khadka/Firebase-Tutorial/tree/lesson-5">Lesson 5</a></li>
   <li><a href="https://github.com/Anuj-Khadka/Firebase-Tutorial/tree/lesson-6">Lesson 6</a></li>
+  <li><a href="https://github.com/Anuj-Khadka/Firebase-Tutorial/tree/lesson-7">Lesson 7</a></li>
 </ul>
 
