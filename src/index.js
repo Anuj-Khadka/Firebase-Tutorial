@@ -16,7 +16,9 @@ import {
 } from "firebase/firestore";
 import {
   getAuth, 
-  createUserWithEmailAndPassword
+  createUserWithEmailAndPassword,
+  signOut,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 
 const firebaseConfig = {
@@ -119,10 +121,10 @@ updateForm.addEventListener("submit", (e) => {
 const signUpForm = document.querySelector(".signup");
 signUpForm.addEventListener("submit", (e) => {
   e.preventDefault();
-
+  
   const email = signUpForm.mail.value;
   const password = signUpForm.password.value;
-
+  
   createUserWithEmailAndPassword(auth, email, password)
   .then((cred) => {
     console.log("user created", cred.user);
@@ -132,3 +134,28 @@ signUpForm.addEventListener("submit", (e) => {
     console.log("Error", error)
   })
 });
+
+// login and logout
+const logOutBtn = document.querySelector(".logout");
+logOutBtn.addEventListener("click", (e) => {
+  signOut(auth)
+  .then(()=>{
+    console.log("User signed Out")
+  })
+  .catch((err)=>{
+    console.log("Error", err)
+  })
+})
+const logInForm = document.querySelector(".login");
+logInForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const email = logInForm.mail.value;
+  const password = logInForm.password.value;
+  signInWithEmailAndPassword(auth, email, password)
+  .then((cred)=>{
+    console.log("signed in successfully", cred)
+  })
+  .catch(error=>{
+    console.log("Error detected while signing in", error)
+  })
+})
