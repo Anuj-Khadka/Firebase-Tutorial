@@ -20,6 +20,6 @@ Table of Content
  <li><a href="https://github.com/Anuj-Khadka/Firebase-Tutorial/tree/lesson-14">Lesson 14</a></li>
  <li><a href="https://github.com/Anuj-Khadka/Firebase-Tutorial/tree/firebase-with-react">React With Firebase</a></li>
  
- https://github.com/Anuj-Khadka/Firebase-Tutorial/tree/firebase-with-react
+ 
 </ul>
 
