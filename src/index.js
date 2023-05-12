@@ -15,10 +15,11 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import {
-  getAuth, 
+  getAuth,
   createUserWithEmailAndPassword,
   signOut,
   signInWithEmailAndPassword,
+  onAuthStateChanged,
 } from "firebase/auth";
 
 const firebaseConfig = {
@@ -64,7 +65,7 @@ const que = query(
 
 // real time collection data
 // onSnapshot(colRef, (snapshot) => {
-onSnapshot(que, (snapshot) => {
+const unsubCol = onSnapshot(que, (snapshot) => {
   const books = [];
   snapshot.docs.forEach((doc) => {
     books.push({ ...doc.data(), id: doc.id });
@@ -100,7 +101,7 @@ const singleDocRef = doc(db, "books", "hasm2ygi0uJ0eMe4BuPc");
 //   console.log("doc funct: ", doc.data(), doc.id);
 // });
 // real time handling
-onSnapshot(singleDocRef, (doc) => {
+const unsubDoc = onSnapshot(singleDocRef, (doc) => {
   console.log("doc funct: ", doc.data(), doc.id);
 });
 
@@ -121,41 +122,56 @@ updateForm.addEventListener("submit", (e) => {
 const signUpForm = document.querySelector(".signup");
 signUpForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  
+
   const email = signUpForm.mail.value;
   const password = signUpForm.password.value;
-  
+
   createUserWithEmailAndPassword(auth, email, password)
-  .then((cred) => {
-    console.log("user created", cred.user);
-    signUpForm.reset()
-  })
-  .catch(error=>{
-    console.log("Error", error)
-  })
+    .then((cred) => {
+      console.log("user created", cred.user);
+      signUpForm.reset();
+    })
+    .catch((error) => {
+      console.log("Error", error);
+    });
 });
 
 // login and logout
 const logOutBtn = document.querySelector(".logout");
 logOutBtn.addEventListener("click", (e) => {
   signOut(auth)
-  .then(()=>{
-    console.log("User signed Out")
-  })
-  .catch((err)=>{
-    console.log("Error", err)
-  })
-})
+    .then(() => {
+      console.log("User signed Out");
+    })
+    .catch((err) => {
+      console.log("Error", err);
+    });
+});
 const logInForm = document.querySelector(".login");
 logInForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const email = logInForm.mail.value;
   const password = logInForm.password.value;
   signInWithEmailAndPassword(auth, email, password)
-  .then((cred)=>{
-    console.log("signed in successfully", cred)
-  })
-  .catch(error=>{
-    console.log("Error detected while signing in", error)
-  })
-})
+    .then((cred) => {
+      console.log("signed in successfully", cred);
+      logInForm.reset();
+    })
+    .catch((error) => {
+      console.log("Error detected while signing in", error);
+    });
+});
+
+// subscribing to auth changes
+const unsubAuth = onAuthStateChanged(auth, (user) => {
+  console.log("user status changed", user);
+});
+
+// unsubscribing to auth changes
+const unsubscribe = document.querySelector(".unsubs");
+unsubscribe.addEventListener("click", () => {
+  console.log("unsubscribing");
+  unsubCol();
+  unsubDoc();
+  unsubAuth();
+});
